@@ -1,0 +1,82 @@
+<html>
+<head>
+
+  <style>
+  td {
+    height: 10em;
+    width: 10em;
+    text-align: center;
+    box-shadow: 3px 3px 2px 2px #e3e5e5;
+    font-size: 110%;
+    font-style: inherit;
+  }
+
+  td:hover {
+    position: relative;
+    top:-2px;
+    left:-2px;
+
+  }
+  .detail {
+    display: none;
+	
+  }
+
+  .detail.open {
+    display: grid;
+    position: relative;
+    height: 10em;
+    width: 10em;
+    background-color: antiquewhite;
+  }
+
+  </style>
+</head>
+<body>
+  <h3 align="center"> �Ų��Ŀα�</h3>
+  <table id="grid" align="center" bgcolor="white">
+  </table>
+
+  <script>
+    let course=[" ","��һ","�ܶ�","����","����","����","��һ�ڿ�","webӦ�ÿ�������","��ѧӢ���ļ�","������Ϣϵͳ","���ݿ�ԭ��/��Ӫ����","��ѧӢ���ļ�","�ڶ��ڿ�",
+    "ë��","������ѧ����","ë��","������ѧ����","��Ӫ����","�����ڿ�","������Ϣϵͳ"," ","���","����","ë��","���Ľڿ�","��������","���ݿ�ԭ��"," ",
+    "���"," "];
+    let list=[" "," "," "," "," "," ","8:20~10:00","���ң���һ����C411    ��ʦ�����ɹ�","���ң���һ����C221    ��ʦ����ε","���ң���һ����C105    ��ʦ������",
+    "���������ݿ�ԭ�������ң���һ����B405     ��ʦ�����    ��˫����Ӫ���������ң���һ����B405    ��ʦ������","���ң���һ����C221    ��ʦ����ε ","10:20~12:00","���ң���һ����A120     ��ʦ���˺�Ӣ",
+    "���ң���һ����C411    ��ʦ���Է���","���ң���һ����A120     ��ʦ���˺�Ӣ","���ң���һ����C411    ��ʦ���Է���","���ң���һ����B405    ��ʦ������",
+    "14:00~15:40","���ң���һ����C105    ��ʦ������"," ","���ң���һ����B101    ��ʦ��������","���ң�������    ��ʦ������ʦ","���ң���һ����A120     ��ʦ���˺�Ӣ",
+    "16:00~17:40","���ң���һ����B303    ��ʦ������","���ң���һ����B405     ��ʦ�����"," ","���ң���һ����B101    ��ʦ��������"," "];
+    let tblEl = document.getElementById('grid');
+    for (let i = 0; i < 5; i++) {
+      let trEl = document.createElement('tr');
+      for (let j = 0; j < 6; j++) {
+        let tdEl = document.createElement('td');
+        let detailDivEl = document.createElement('div');
+        detailDivEl.className = 'detail';
+        detailDivEl.innerHTML=list[i*6+j];
+        detailDivEl.onmouseout =function(event) {
+          let names = detailDivEl.className.split(' ');
+          names = names.filter((x) => x != 'open')
+          detailDivEl.className = names.join(' ');
+        }
+        tdEl.append(detailDivEl);
+        tdEl.innerHTML = course[i*6+ j] ;
+        tdEl.onclick = function(event) {
+          let names = detailDivEl.className.split(' ');
+
+          if (names.indexOf('open') >= 0) {
+            names = names.filter((x) => x != 'open')
+          } else {
+            names.push('open');
+          }
+          detailDivEl.className = names.join(' ');
+        };
+        tdEl.append(detailDivEl);
+        trEl.append(tdEl);
+      }
+      tblEl.append(trEl);
+      }
+</script>
+
+</body>
+</html>
